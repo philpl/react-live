@@ -17,6 +17,7 @@ export type LiveProviderProps = Omit<DivProps, 'scope'> & {
   language?: Language;
   disabled?: boolean;
   theme?: PrismTheme;
+  onRender?: (error?: Error) => void;
 }
 
 export const LiveProvider: ComponentClass<LiveProviderProps>
