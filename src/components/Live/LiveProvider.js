@@ -50,6 +50,9 @@ export default class LiveProvider extends Component {
   onChange = code => {
     const { scope, transformCode, noInline } = this.props;
     this.transpile({ code, scope, transformCode, noInline });
+    (typeof code === 'string') && this.setState({
+     code
+    })
   };
 
   onError = error => {
@@ -88,13 +91,13 @@ export default class LiveProvider extends Component {
     return (
       <LiveContext.Provider
         value={{
-          ...this.state,
           code,
           language,
           theme,
           disabled,
           onError: this.onError,
-          onChange: this.onChange
+          onChange: this.onChange,
+          ...this.state,
         }}
       >
         {children}
